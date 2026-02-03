@@ -2,15 +2,16 @@
 
 import { ChangeEvent } from 'react';
 import PresetSelector from './PresetSelector';
-import { COLOR_PRESETS } from '@/lib/color-presets';
 
 interface ColorControlsProps {
   presetIndex: number;
   bgColor: string;
   duotoneColor: string;
+  lineThickness: number;
   onPresetChange: (index: number) => void;
   onBgColorChange: (color: string) => void;
   onDuotoneColorChange: (color: string) => void;
+  onLineThicknessChange: (thickness: number) => void;
   onDownload: () => void;
   onReset: () => void;
 }
@@ -19,9 +20,11 @@ export default function ColorControls({
   presetIndex,
   bgColor,
   duotoneColor,
+  lineThickness,
   onPresetChange,
   onBgColorChange,
   onDuotoneColorChange,
+  onLineThicknessChange,
   onDownload,
   onReset,
 }: ColorControlsProps) {
@@ -31,6 +34,10 @@ export default function ColorControls({
 
   const handleDuotoneChange = (e: ChangeEvent<HTMLInputElement>) => {
     onDuotoneColorChange(e.target.value);
+  };
+
+  const handleThicknessChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onLineThicknessChange(Number(e.target.value));
   };
 
   return (
@@ -75,6 +82,21 @@ export default function ColorControls({
             className="flex-1 bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm font-mono uppercase"
           />
         </div>
+      </div>
+
+      {/* Line Thickness Slider */}
+      <div>
+        <label className="block text-sm text-white/60 mb-2">
+          Line Thickness <span className="text-white/40">({lineThickness}px)</span>
+        </label>
+        <input
+          type="range"
+          min="0"
+          max="40"
+          value={lineThickness}
+          onChange={handleThicknessChange}
+          className="w-full accent-white"
+        />
       </div>
 
       <hr className="border-white/10" />

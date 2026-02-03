@@ -80,7 +80,7 @@ export default function ImageUploader({ onImageProcessed }: ImageUploaderProps) 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8">
       <h1 className="text-3xl font-bold mb-8 text-center">
-        Duotone Portrait Generator
+        Juan On One Duotone Generator
       </h1>
 
       <div

@@ -7,6 +7,7 @@ interface DuotoneCanvasProps {
   imageUrl: string;
   bgColor: string;
   duotoneColor: string;
+  lineThickness: number;
   onCanvasReady?: (canvas: HTMLCanvasElement) => void;
 }
 
@@ -14,6 +15,7 @@ export default function DuotoneCanvas({
   imageUrl,
   bgColor,
   duotoneColor,
+  lineThickness,
   onCanvasReady,
 }: DuotoneCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -36,12 +38,12 @@ export default function DuotoneCanvas({
       });
   }, [imageUrl]);
 
-  // Render colors instantly when they change (no async, no loading state)
+  // Render when ready or when colors/thickness change
   useEffect(() => {
     if (!isReady || !canvasRef.current) return;
-    renderColors(canvasRef.current, bgColor, duotoneColor);
+    renderColors(canvasRef.current, bgColor, duotoneColor, lineThickness);
     onCanvasReady?.(canvasRef.current);
-  }, [isReady, bgColor, duotoneColor, onCanvasReady]);
+  }, [isReady, bgColor, duotoneColor, lineThickness, onCanvasReady]);
 
   return (
     <div className="relative flex items-center justify-center bg-neutral-900 rounded-2xl overflow-hidden min-h-[400px]">

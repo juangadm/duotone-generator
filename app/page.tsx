@@ -7,11 +7,14 @@ import ColorControls from '@/components/ColorControls';
 import { COLOR_PRESETS } from '@/lib/color-presets';
 import { downloadCanvas, clearCache } from '@/lib/canvas-renderer';
 
+const DEFAULT_LINE_THICKNESS = 20;
+
 export default function Home() {
   const [processedImage, setProcessedImage] = useState<string | null>(null);
   const [presetIndex, setPresetIndex] = useState(0);
   const [bgColor, setBgColor] = useState(COLOR_PRESETS[0].bg);
   const [duotoneColor, setDuotoneColor] = useState(COLOR_PRESETS[0].duotone);
+  const [lineThickness, setLineThickness] = useState(DEFAULT_LINE_THICKNESS);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const handleImageProcessed = (imageUrl: string) => {
@@ -33,6 +36,7 @@ export default function Home() {
   const handleReset = () => {
     setBgColor(COLOR_PRESETS[presetIndex].bg);
     setDuotoneColor(COLOR_PRESETS[presetIndex].duotone);
+    setLineThickness(DEFAULT_LINE_THICKNESS);
   };
 
   const handleUploadNew = () => {
@@ -41,6 +45,7 @@ export default function Home() {
     setPresetIndex(0);
     setBgColor(COLOR_PRESETS[0].bg);
     setDuotoneColor(COLOR_PRESETS[0].duotone);
+    setLineThickness(DEFAULT_LINE_THICKNESS);
   };
 
   const handleCanvasReady = useCallback((canvas: HTMLCanvasElement) => {
@@ -63,6 +68,7 @@ export default function Home() {
               imageUrl={processedImage}
               bgColor={bgColor}
               duotoneColor={duotoneColor}
+              lineThickness={lineThickness}
               onCanvasReady={handleCanvasReady}
             />
             <button
@@ -81,9 +87,11 @@ export default function Home() {
             presetIndex={presetIndex}
             bgColor={bgColor}
             duotoneColor={duotoneColor}
+            lineThickness={lineThickness}
             onPresetChange={handlePresetChange}
             onBgColorChange={setBgColor}
             onDuotoneColorChange={setDuotoneColor}
+            onLineThicknessChange={setLineThickness}
             onDownload={handleDownload}
             onReset={handleReset}
           />
