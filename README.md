@@ -2,6 +2,8 @@
 
 A web app for creating stylized duotone portraits. Upload a photo, automatically remove the background, and apply beautiful color effects — all in the browser.
 
+Built as a companion project for [What Spotify Knew in 2015](https://delightinthedetails.substack.com/p/what-spotify-knew-in-2015).
+
 ![Next.js](https://img.shields.io/badge/Next.js-14-black) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38bdf8)
 
 ## Features
